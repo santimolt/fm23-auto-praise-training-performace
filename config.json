@@ -1,4 +1,5 @@
 {
   "training_section_hotkey": "ctrl+u",
-  "min_score_to_praise": 7.5
+  "min_score_to_praise": 7.5,
+  "delay_after_hotkey_in_seconds": 3
 }

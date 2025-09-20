@@ -99,6 +99,8 @@ FM23-Auto-Praise-Players-Training/
 ├── main.py                  # Main loop
 ├── fm_running.py            # Detects FM23 process
 ├── focus_fm.py              # Brings FM23 window to front and navigates
+├── nav_to_training.py       # Navigate to the individual training section on FM23
+├── utils.py                 # Multi-purpose functions
 ├── config.json              # User settings (hotkeys, thresholds)
 ├── requirements.txt
 ├── README.md
