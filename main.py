@@ -1,16 +1,16 @@
-import psutil
+from is_fm_running import is_fm_running
+from focus_fm import focus_fm
 
-def is_fm_running():
-    for proc in psutil.process_iter(['name']):
-        try:
-            if proc.info['name'] and 'fm' in proc.info['name'].lower():
-                return True
-        except (psutil.NoSuchProcess, psutil.AccessDenied):
-            continue
-    return False
+
+def main():
+    print("FM23 Auto Praise Players Training started.")
+
+    if is_fm_running():
+        print("FM23 IS running")
+        focus_fm()
+    else:
+        print("FM23 IS NOT running")
+
 
 if __name__ == "__main__":
-    if is_fm_running():
-        print("FM23 is running!")
-    else:
-        print("FM23 is not running.")
+    main()
