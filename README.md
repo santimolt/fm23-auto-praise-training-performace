@@ -14,6 +14,7 @@ Table of Contents
   - [Configuration](#configuration)
   - [Usage](#usage)
     - [Notes](#notes)
+    - [Important](#important)
   - [Project Structure](#project-structure)
   - [Contributing](#contributing)
   - [License](#license)
@@ -24,6 +25,7 @@ This project is an automation script that interacts with Football Manager 23.
 
 - Detects if FM23 is running.
 - Navigates to the individual training section.
+- Prints the screen in HTML format.
 - Checks the training scores of your players.
 - Automatically praises players with a performance score ≥ 7.50.
 
@@ -65,7 +67,12 @@ Edit config.json to set:
 ```json
 {
   "training_section_hotkey": "ctrl+u", // Whatever hotkey you use to navigate to the individual training section in FM
-  "min_score_to_praise": 7.5 // The minimum training score to praise a player
+  "other_section_hotkey": "F4", // Hotkey to a section of the game that loads fast (inbox is F4 by default)
+  "print_screen_hotkey": "ctrl+p", // In game hotkey to print the screen
+  "print_dir": "~/Documents/Sports Interactive/Football Manager 2023", // The default directory shown when trying to print. If the Player file is not read correctly, try changing thi to wherever your game saves prints by default.
+  "print_file_name": "Untitled.html", // Default name of a fresh screen print that the game sets
+  "min_score_to_praise": 7.5, // The minimum training score to praise a player
+  "delay_after_hotkey_in_seconds": 1 // The max amount of time (in seconds) your game takes to load the individual training screen
 }
 ```
 
@@ -82,15 +89,23 @@ Behavior:
 1. Checks if FM23 is running.
 2. Brings the FM23 window to focus.
 3. Navigates to the training section using the hotkey.
-4. Praises players with score ≥ threshold every few seconds.
-5. It is recommended to keep FM23 running in the background while the script executes.
+4. Prints the individual training section in HTML using the in game print screen.
+5. Recognizes the players and its rating (even if they're not visible because of scroll).
+6. Praises players with score ≥ threshold every few seconds.
+7. It is recommended to keep FM23 running in the background while the script executes.
 
 ### Notes
 
 - Make sure FM23 is running before starting the script.
+- This script is tested using the Football Manager screen in a 1920x1080 monitor, with game windowed anf fullscreen. Other conditions may not work.
 - Ensure the hotkey in config.json matches your FM23 configuration.
 - Multiplatform solution uses pygetwindow + pyautogui, no platform-specific dependencies.
 - For best results, run the script in a windowed environment (not minimized or full-screen exclusive).
+
+### Important
+
+- Make sure the individual training screen options are set to "Detailed" and the list of players is ordered by "Training Rating" as shown in the screenshot:
+![Individual training screen setup](./assets/individual-training-screen-setup.png)
 
 ## Project Structure
 
@@ -101,6 +116,8 @@ FM23-Auto-Praise-Players-Training/
 ├── focus_fm.py              # Brings FM23 window to front and navigates
 ├── nav_to_training.py       # Navigate to the individual training section on FM23
 ├── utils.py                 # Multi-purpose functions
+├── print_screen.py          # Takes an html screenshot of FM (native from the game)
+├── player_identifier.py     # Uses the screen printed in HTML to get the training info of players
 ├── config.json              # User settings (hotkeys, thresholds)
 ├── requirements.txt
 ├── README.md

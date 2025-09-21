@@ -1,8 +1,10 @@
 import time
 from utils import get_config
 from focus_fm import focus_fm
+from print_screen import print_screen
 from is_fm_running import is_fm_running
 from nav_to_training import navigate_to_individual_training
+from player_identifier import player_identifier
 
 
 def main():
@@ -29,6 +31,8 @@ def main():
             delay = config.get("delay_after_hotkey_in_seconds", 3)
             print(f"⏳ Waiting {delay}s for individual training section to load in FM")
             time.sleep(delay)
+            print_screen()
+            player_identifier()
 
 
 if __name__ == "__main__":

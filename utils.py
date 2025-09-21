@@ -18,8 +18,11 @@ def get_config(config_file="config.json"):
     # Defaults
     defaults = {
         "training_section_hotkey": "ctrl+u",
+        "print_screen_hotkey": "ctrl+p",
+        "print_dir": "~/Documents/Sports Interactive/Football Manager 2023",
+        "print_file_name": "Untitled.html",
         "min_score_to_praise": 7.5,
-        "delay_after_hotkey": 3
+        "delay_after_hotkey_in_seconds": 3,
     }
 
     # Merge user config with defaults
